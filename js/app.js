@@ -10,6 +10,20 @@ function getInputValue(inputId){
     return inputValueAmount;
 }
 
+// function to update value
+
+function updateValue(inputId, incomeInputAmount, totalExpenseAmount, foodInputAmount, rentInputAmount, clothInputAmount, isAdd){
+    const totalExpense = document.getElementById(inputId);
+    
+    if(isAdd == false){
+        
+        totalExpense.innerHTML = totalExpenseAmount;
+    }
+    else{
+        balance.innerHTML = incomeInputAmount - totalExpenseAmount;
+    }
+    // return totalExpenseAmount;
+}
 
 // event listener to calculate button 
 
@@ -56,14 +70,19 @@ document.getElementById('calculate-button').addEventListener('click', function()
     
     // clearing the value
     clothInput.value = ""; */
-
+    const totalExpenseAmount = foodInputAmount + rentInputAmount + clothInputAmount;
     // setting total expenses and balance
 
-    const totalExpense = document.getElementById('total-expense');
+    /* const totalExpenseAmount = */ updateValue('total-expense', incomeInputAmount, totalExpenseAmount, foodInputAmount, rentInputAmount, clothInputAmount, false);
+
+    /* const totalExpense = document.getElementById('total-expense');
     const totalExpenseAmount = foodInputAmount + rentInputAmount + clothInputAmount;
-    totalExpense.innerHTML = totalExpenseAmount;
+    totalExpense.innerHTML = totalExpenseAmount; */
 
     // setting the balance
-    const balance = document.getElementById('balance');
-    balance.innerHTML = incomeInputAmount - totalExpenseAmount;
+
+updateValue('balance', incomeInputAmount, totalExpenseAmount, foodInputAmount, rentInputAmount, clothInputAmount, true);
+
+    /* const balance = document.getElementById('balance');
+    balance.innerHTML = incomeInputAmount - totalExpenseAmount; */
 });
