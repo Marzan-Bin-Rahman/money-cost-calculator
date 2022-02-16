@@ -16,73 +16,47 @@ function updateValue(inputId, balanceAmount, totalExpenseAmount, isAdd){
     const totalExpense = document.getElementById(inputId);
     
     if(isAdd == false){
-        
         totalExpense.innerHTML = totalExpenseAmount;
     }
     else{
         balance.innerHTML = balanceAmount;
     }
 }
-/* function handle(nam, balanceAmount, totalExpenseAmount){
-    const nami = toString(nam);
-    if(nami>0 && typeof nami == 'number'){
-        
-        updateValue('total-expense', balanceAmount, totalExpenseAmount, false);
-    // setting the balance
 
-        updateValue('balance', balanceAmount, totalExpenseAmount, true);
-    }
-    else{
-        alert("there is problem in" + nami);
-    }
-} */
 // event listener to calculate button 
 
 document.getElementById('calculate-button').addEventListener('click', function(){
+
     // getting income input
 
     const incomeInputAmount = getInputValue('income-input');
-    /* const incomeInput = document.getElementById('income-input');
-    const incomeInputText = incomeInput.value;
-    const incomeInputAmount = parseFloat(incomeInputText);
     
-    // clearing the value
-    incomeInput.value = ""; */
-
     // getting expenses
 
     // getting food amount
+
     const foodInputAmount = getInputValue('food-input');
 
-    /* const foodInput = document.getElementById('food-input');
-    const foodInputText = foodInput.value;
-    const foodInputAmount = parseFloat(foodInputText);
-
-    // clearing the value
-    foodInput.value = ""; */
-
     // getting rent amount
+
     const rentInputAmount = getInputValue('rent-input');
 
-    /* const rentInput = document.getElementById('rent-input');
-    const rentInputText = rentInput.value;
-    const rentInputAmount = parseFloat(rentInputText);
-    
-    // clearing the value
-    rentInput.value = ""; */
-
     // getting clothes amount
+
     const clothInputAmount = getInputValue('cloth-input');
 
-    /* const clothInput = document.getElementById('cloth-input');
-    const clothInputText = clothInput.value;
-    const clothInputAmount = parseFloat(clothInputText);
-    
-    // clearing the value
-    clothInput.value = ""; */
+    // getting the total expense
+
     const totalExpenseAmount = foodInputAmount + rentInputAmount + clothInputAmount;
+
     // setting total expenses and balance
+
     const balanceAmount = incomeInputAmount - totalExpenseAmount;
+    const userIncome = document.getElementById('user-income');
+    userIncome.innerHTML = incomeInputAmount;
+
+    // erorr handler 
+
     if(incomeInputAmount<0 || isNaN(incomeInputAmount)){
         alert("You have to give a number as income value");
     }
@@ -104,27 +78,41 @@ document.getElementById('calculate-button').addEventListener('click', function()
 
         updateValue('balance', balanceAmount, totalExpenseAmount, true);
     }
-    /* if(typeof totalExpenseAmount == 'number' && typeof balanceAmount == 'number' && totalExpenseAmount > 0 && balanceAmount > 0){
-        updateValue('total-expense', balanceAmount, totalExpenseAmount, false);
-    // setting the balance
+});
 
-        updateValue('balance', balanceAmount, totalExpenseAmount, true);
+
+// savings button
+
+document.getElementById('save-button').addEventListener('click', function(){
+
+    //about saving amount
+
+    const userIncome = document.getElementById('user-income').innerHTML;
+    const saveInputAmount = getInputValue('save-input');
+    const savingAmount = document.getElementById('saving-amount');
+    const savingAmountTotal = parseFloat(userIncome) * saveInputAmount / 100;
+    
+    // updating remaining balance
+
+    const balance = document.getElementById('balance').innerHTML;
+    const balanceAmount = parseFloat(balance);
+    const remainingBalanceInput = document.getElementById('remaining-balance');
+
+    // erorr handler 
+
+    if(balanceAmount<savingAmountTotal){
+        alert('Your savings must be less than your remaining money after expenses');
+    }
+    else if(isNaN(savingAmountTotal)|| savingAmountTotal<0){
+        alert("Please give a real number!")
     }
     else{
-        alert('Please, give the values carefully!');
-    } */
+        // saving amount displaying
+        
+    savingAmount.innerHTML = savingAmountTotal;
 
-  /*   handle(incomeInputAmount, balanceAmount, totalExpenseAmount)
-    handle(foodInputAmount, balanceAmount, totalExpenseAmount)
-    handle(rentInputAmount, balanceAmount, totalExpenseAmount)
-    handle(clothInputAmount, balanceAmount, totalExpenseAmount) */
-
-    /* const totalExpense = document.getElementById('total-expense');
-    const totalExpenseAmount = foodInputAmount + rentInputAmount + clothInputAmount;
-    totalExpense.innerHTML = totalExpenseAmount; */
-
+    // about reamining balance
     
-
-    /* const balance = document.getElementById('balance');
-    balance.innerHTML = incomeInputAmount - totalExpenseAmount; */
-});
+    remainingBalanceInput.innerHTML = balanceAmount - savingAmountTotal;
+    }
+})
