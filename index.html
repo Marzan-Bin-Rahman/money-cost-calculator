@@ -9,11 +9,68 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <!-- <a href="https://storyset.com/money">Money illustrations by Storyset</a> -->
     <!-- header sction of the site -->
     <header class="text-center mt-9">
         <h1 class="text-5xl font-extrabold text-cyan-500">Money Calculator &#128176;</h1>
     </header>
+    <!-- main part of the website -->
+    <main class="my-20">
+        <!-- calculation section starts from here -->
+        <section class="w-4/5 grid grid-cols-2 gap-8 mx-auto">
+            <div class="flex items-center">
+                <!-- the image goes here -->
+                <img src="images/Wallet-bro.svg" alt="A picture of image">
+            </div>
+            <div class="bg-neutral-100 p-8 rounded-3xl shadow-2xl">
+                <!-- income part -->
+                <div>
+                    <h2 class="text-2xl text-center font-extrabold">Income</h2>
+                    <div class="text-center my-7">
+                        <p class="inline mr-4">Income:</p>
+                        <input class="p-1 rounded-md outline-none outline-2 outline-emerald-200
+                        focus:ring-4 focus:ring-emerald-400" type="text" name="" id="income-input" placeholder="Your Income">
+                    </div>
+                </div>
+                <!-- expense part -->
+                <div>
+                    <h2 class="text-2xl text-center font-extrabold">Expenses</h2>
+                    <div class="text-center my-7">
+                        <p class="inline mr-4">Food:</p>
+                        <input class="p-1 rounded-md outline-none outline-2 outline-emerald-200
+                        focus:ring-4 focus:ring-emerald-400" type="text" name="" id="food-input" placeholder="Your Food Expense">
+                    </div>
+                    <div class="text-center my-7">
+                        <p class="inline mr-4">Rent:</p>
+                        <input class="p-1 rounded-md outline-none outline-2 outline-emerald-200
+                        focus:ring-4 focus:ring-emerald-400" type="text" name="" id="rent-input" placeholder="Your Rent Expense">
+                    </div>
+                    <div class="text-center my-7">
+                        <p class="inline mr-4">Clothes:</p>
+                        <input class="p-1 rounded-md outline-none outline-2 outline-emerald-200
+                        focus:ring-4 focus:ring-emerald-400" type="text" name="" id="cloth-input" placeholder="Your Cloths Expense">
+                    </div>
+                    <div>
+                        <button id="button" class="bg-blue-400	 px-7 py-2 rounded-md text-xl text-white font-bold block mx-auto mb-9 focus:ring-4 focus:ring-emerald-200 hover:scale-110 duration-1000">Calculate</button>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold text-center">Total Expenses: <span id="total-expense">00</span> </h1>
+                        <h1 class="text-xl font-semibold text-center">Balance: <span id="balance">00</span> </h1>
+                    </div>
+                    <div class="text-center my-7">
+                        <p class="inline mr-4">Clothes:</p>
+                        <input class="p-1 rounded-md outline-none outline-2 outline-emerald-200
+                        focus:ring-4 focus:ring-emerald-400" type="text" name="" id="save-input" placeholder="Your Cloths Expense">
+                        <span class="mx-5">%</span>
+                        <button id="button" class="bg-blue-400 px-5 py-1.5 rounded-md text-xl text-white mb-9 focus:ring-4 focus:ring-emerald-200 hover:scale-110 duration-1000">Save</button>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold text-center">Saving Amount: <span id="saving-amount">00</span> </h1>
+                        <h1 class="text-xl font-semibold text-center">Remaining Balance: <span id="remaining-balance">00</span> </h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     <script src="js/app.js"></script>
 </body>
 </html>
