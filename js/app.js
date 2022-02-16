@@ -12,7 +12,7 @@ function getInputValue(inputId){
 
 // function to update value
 
-function updateValue(inputId, incomeInputAmount, totalExpenseAmount, foodInputAmount, rentInputAmount, clothInputAmount, isAdd){
+function updateValue(inputId, balanceAmount, totalExpenseAmount, isAdd){
     const totalExpense = document.getElementById(inputId);
     
     if(isAdd == false){
@@ -20,18 +20,28 @@ function updateValue(inputId, incomeInputAmount, totalExpenseAmount, foodInputAm
         totalExpense.innerHTML = totalExpenseAmount;
     }
     else{
-        balance.innerHTML = incomeInputAmount - totalExpenseAmount;
+        balance.innerHTML = balanceAmount;
     }
-    // return totalExpenseAmount;
 }
+/* function handle(nam, balanceAmount, totalExpenseAmount){
+    const nami = toString(nam);
+    if(nami>0 && typeof nami == 'number'){
+        
+        updateValue('total-expense', balanceAmount, totalExpenseAmount, false);
+    // setting the balance
 
+        updateValue('balance', balanceAmount, totalExpenseAmount, true);
+    }
+    else{
+        alert("there is problem in" + nami);
+    }
+} */
 // event listener to calculate button 
 
 document.getElementById('calculate-button').addEventListener('click', function(){
     // getting income input
 
     const incomeInputAmount = getInputValue('income-input');
-
     /* const incomeInput = document.getElementById('income-input');
     const incomeInputText = incomeInput.value;
     const incomeInputAmount = parseFloat(incomeInputText);
@@ -72,16 +82,48 @@ document.getElementById('calculate-button').addEventListener('click', function()
     clothInput.value = ""; */
     const totalExpenseAmount = foodInputAmount + rentInputAmount + clothInputAmount;
     // setting total expenses and balance
+    const balanceAmount = incomeInputAmount - totalExpenseAmount;
+    if(incomeInputAmount<0 || isNaN(incomeInputAmount)){
+        alert("You have to give a number as income value");
+    }
+    else if(foodInputAmount<0 || isNaN(foodInputAmount)){
+        alert("You have to give a number as food value");
+    }
+    else if(rentInputAmount<0 || isNaN(rentInputAmount)){
+        alert("You have to give a number as rent value");
+    }
+    else if(clothInputAmount<0 || isNaN(clothInputAmount)){
+        alert("You have to give a number as cloth value");
+    }
+    else if(totalExpenseAmount>incomeInputAmount||balanceAmount<0){
+        alert('Your expense is much higher than your income')
+    }
+    else{
+        updateValue('total-expense', balanceAmount, totalExpenseAmount, false);
+        // setting the balance
 
-    /* const totalExpenseAmount = */ updateValue('total-expense', incomeInputAmount, totalExpenseAmount, foodInputAmount, rentInputAmount, clothInputAmount, false);
+        updateValue('balance', balanceAmount, totalExpenseAmount, true);
+    }
+    /* if(typeof totalExpenseAmount == 'number' && typeof balanceAmount == 'number' && totalExpenseAmount > 0 && balanceAmount > 0){
+        updateValue('total-expense', balanceAmount, totalExpenseAmount, false);
+    // setting the balance
+
+        updateValue('balance', balanceAmount, totalExpenseAmount, true);
+    }
+    else{
+        alert('Please, give the values carefully!');
+    } */
+
+  /*   handle(incomeInputAmount, balanceAmount, totalExpenseAmount)
+    handle(foodInputAmount, balanceAmount, totalExpenseAmount)
+    handle(rentInputAmount, balanceAmount, totalExpenseAmount)
+    handle(clothInputAmount, balanceAmount, totalExpenseAmount) */
 
     /* const totalExpense = document.getElementById('total-expense');
     const totalExpenseAmount = foodInputAmount + rentInputAmount + clothInputAmount;
     totalExpense.innerHTML = totalExpenseAmount; */
 
-    // setting the balance
-
-updateValue('balance', incomeInputAmount, totalExpenseAmount, foodInputAmount, rentInputAmount, clothInputAmount, true);
+    
 
     /* const balance = document.getElementById('balance');
     balance.innerHTML = incomeInputAmount - totalExpenseAmount; */
