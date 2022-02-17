@@ -54,7 +54,9 @@ document.getElementById('calculate-button').addEventListener('click', function()
     const balanceAmount = incomeInputAmount - totalExpenseAmount;
     const userIncome = document.getElementById('user-income');
     userIncome.innerHTML = incomeInputAmount;
-
+    if(isNaN(userIncome)){
+        userIncome.innerHTML = 00;
+    }
     // erorr handler 
 
     if(incomeInputAmount<0 || isNaN(incomeInputAmount)){
@@ -81,16 +83,17 @@ document.getElementById('calculate-button').addEventListener('click', function()
 });
 
 
+
 // savings button
 
 document.getElementById('save-button').addEventListener('click', function(){
-
+    
     //about saving amount
 
     const userIncome = document.getElementById('user-income').innerHTML;
     const saveInputAmount = getInputValue('save-input');
     const savingAmount = document.getElementById('saving-amount');
-    const savingAmountTotal = parseFloat(userIncome) * saveInputAmount / 100;
+    const savingAmountTotal = parseInt(parseFloat(userIncome) * saveInputAmount / 100);
     
     // updating remaining balance
 
@@ -104,7 +107,7 @@ document.getElementById('save-button').addEventListener('click', function(){
         alert('Your savings must be less than your remaining money after expenses');
     }
     else if(isNaN(savingAmountTotal)|| savingAmountTotal<0){
-        alert("Please give a real number!")
+        alert("Please give a real number!");
     }
     else{
         // saving amount displaying
