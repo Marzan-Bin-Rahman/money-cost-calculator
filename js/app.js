@@ -54,9 +54,6 @@ document.getElementById('calculate-button').addEventListener('click', function()
     const balanceAmount = incomeInputAmount - totalExpenseAmount;
     const userIncome = document.getElementById('user-income');
     userIncome.innerHTML = incomeInputAmount;
-    if(isNaN(userIncome)){
-        userIncome.innerHTML = 00;
-    }
     // erorr handler 
 
     if(incomeInputAmount<0 || isNaN(incomeInputAmount)){
